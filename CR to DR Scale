@@ -1,0 +1,32 @@
+selectImage("F.jpg");
+roiManager("Select", 0);
+getSelectionBounds(fx, fy, fwidth, fheight); //get Boundaries for the ROI
+
+selectImage("C.jpg");
+getDimensions(ciwidth, ciheight, channels, slices, frames);
+
+run("Duplicate...", " ");
+run("8-bit");
+makeRectangle(ciwidth/2-ciwidth*0.48, ciheight/2-ciwidth*0.49, ciwidth*0.96, ciwidth*0.96); //create square in the center of image C, almost as wide as the image
+run("Make Inverse");
+run("Fill"); //exclude the black edges and writing in the corner of image C
+
+run("Select None");
+setAutoThreshold("Default");
+run("Create Selection");
+getSelectionBounds(cx, cy, cwidth, cheight); //get the bounding rectangle for the selection in image C
+makeRectangle(cx, cy, cwidth, cheight);
+close();
+
+//scale selection based on width of both rectangles
+xscale=fwidth/cwidth;
+yscale=fheight/cheight;
+selectImage("C.jpg");
+
+run("Scale...", "x="+xscale+" y="+yscale+" interpolation=Bilinear average create");
+
+//adjust the window to the size of image F
+selectImage("F.jpg");
+getDimensions(fiwidth, fiheight, channels, slices, frames);
+selectImage("C-1.jpg");
+run("Canvas Size...", "width="+fiwidth+" height="+fiheight+" position=Center zero");
