@@ -1,0 +1,32 @@
+Sub Clear_Data()
+'
+' Clear_Data Macro
+' Clear ROI Data
+'
+
+'
+    Range("B6:E17").Select
+    Selection.ClearContents
+    Range("H6:K17").Select
+    Selection.ClearContents
+    Range("N6:Q17").Select
+    Selection.ClearContents
+    Range("B21:E32").Select
+    Selection.ClearContents
+    Range("H21:K32").Select
+    Selection.ClearContents
+    Range("N21:Q32").Select
+    Selection.ClearContents
+    Range("B36:E47").Select
+    Selection.ClearContents
+    Range("H36:K47").Select
+    Selection.ClearContents
+    Range("N36:Q47").Select
+    Selection.ClearContents
+    Range("B51:E62").Select
+    Selection.ClearContents
+    Range("H51:K62").Select
+    Selection.ClearContents
+    Range("N51:Q62").Select
+    Selection.ClearContents
+End Sub
